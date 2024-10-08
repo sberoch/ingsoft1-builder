@@ -6,23 +6,11 @@ public class Pizza {
     private boolean pepperoni;
     private boolean bacon;
 
-    public Pizza(int size, boolean cheese, boolean pepperoni, boolean bacon) {
-        this.size = size;
-        this.cheese = cheese;
-        this.pepperoni = pepperoni;
-        this.bacon = bacon;
-    }
-
-    public Pizza(int size) {
-        this(size, true, false, false);
-    }
-
-    public Pizza(int size, boolean cheese) {
-        this(size, cheese, false, false);
-    }
-
-    public Pizza(int size, boolean cheese, boolean pepperoni) {
-        this(size, cheese, pepperoni, false);
+    private Pizza(Builder builder) {
+        this.size = builder.size;
+        this.cheese = builder.cheese;
+        this.pepperoni = builder.pepperoni;
+        this.bacon = builder.bacon;
     }
 
     public String toString() {
@@ -32,5 +20,35 @@ public class Pizza {
                 ", pepperoni=" + pepperoni +
                 ", bacon=" + bacon +
                 '}';
+    }
+
+    public static class Builder {
+        private int size;
+        private boolean cheese = false;
+        private boolean pepperoni = false;
+        private boolean bacon = false;
+
+        public Builder(int size) {
+            this.size = size;
+        }
+
+        public Builder cheese() {
+            cheese = true;
+            return this;
+        }
+
+        public Builder pepperoni() {
+            pepperoni = true;
+            return this;
+        }
+
+        public Builder bacon() {
+            bacon = true;
+            return this;
+        }
+
+        public Pizza build() {
+            return new Pizza(this);
+        }
     }
 }
