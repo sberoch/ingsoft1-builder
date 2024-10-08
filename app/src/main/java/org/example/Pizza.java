@@ -13,6 +13,18 @@ public class Pizza {
         this.bacon = bacon;
     }
 
+    public Pizza(int size) {
+        this(size, true, false, false);
+    }
+
+    public Pizza(int size, boolean cheese) {
+        this(size, cheese, false, false);
+    }
+
+    public Pizza(int size, boolean cheese, boolean pepperoni) {
+        this(size, cheese, pepperoni, false);
+    }
+
     public String toString() {
         return "Pizza{" +
                 "size=" + size +
